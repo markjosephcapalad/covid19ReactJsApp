@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import { FormatNumber } from "../Util";
 import "./css/select.css";
+import "./css/common.css";
 
 function Countries(props) {
   const [stat, setStat] = useState([]);
@@ -33,38 +34,12 @@ function Countries(props) {
       const newStat = filteredStat.filter(
         c => c.country.toLowerCase() === country.toLowerCase()
       );
-      console.log(newStat);
+
       setStat(newStat);
     } else {
       setStat(filteredStat);
     }
   }
-
-  const _style = {
-    display: "flex",
-    marginTop: "20px",
-    flexFlow: "wrap",
-    justifyContent: "space-evenly",
-    backgroundColor: "darkslategrey"
-  };
-
-  const boxStyle = {
-    backgroundColor: "chocolate",
-    padding: "15px",
-    borderRadius: "10px",
-    marginTop: "25px",
-    width: "300px"
-  };
-
-  const _link = {
-    color: "white"
-  };
-
-  const boxInside = {
-    display: "flex",
-    justifyContent: "space-evenly",
-    flexDirection: "column"
-  };
 
   if (!stat)
     return (
@@ -85,21 +60,21 @@ function Countries(props) {
           })}
         </select>
       </div>
-      <div style={_style}>
+      <div className="main">
         {stat.map(c => {
           return (
-            <div style={boxStyle}>
-              <div style={boxInside}>
+            <div className="box">
+              <div className="box-inside">
                 <div>
-                  <Link to={`/country/${c.country}`} style={_link}>
+                  <Link className="color-white" to={`/country/${c.country}`}>
                     <h2>{c.country}</h2>
                   </Link>
                   <hr />
                 </div>
 
-                <div>Cases: {c.cases}</div>
-                <div>Deaths: {c.deaths}</div>
-                <div>Recovered: {c.recovered}</div>
+                <div>Cases: {FormatNumber(c.cases)}</div>
+                <div>Deaths: {FormatNumber(c.deaths)}</div>
+                <div>Recovered: {FormatNumber(c.recovered)}</div>
               </div>
             </div>
           );

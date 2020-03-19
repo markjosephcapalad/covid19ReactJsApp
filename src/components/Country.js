@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { FormatNumber } from "../Util";
+import "./css/common.css";
 
 function Country(props) {
   const [stat, setStat] = useState([]);
@@ -23,31 +25,21 @@ function Country(props) {
     width: "300px"
   };
 
-  const boxInside = {
-    display: "flex",
-    justifyContent: "space-evenly",
-    flexDirection: "column"
-  };
-
-  const _div = {
-    display: "flex",
-    justifyContent: "space-evenly"
-  };
   return (
-    <div style={_div}>
-      <div style={boxStyle}>
-        <div style={boxInside}>
+    <div className="flex-space-evenly">
+      <div className="box">
+        <div className="box-inside">
           <div>
             <h2>{stat.country}</h2>
             <hr />
           </div>
-          <div>Cases: {stat.cases}</div>
-          <div>Deaths: {stat.deaths}</div>
-          <div>Recovered: {stat.recovered}</div>
+          <div>Cases: {FormatNumber(stat.cases)}</div>
+          <div>Deaths: {FormatNumber(stat.deaths)}</div>
+          <div>Recovered: {FormatNumber(stat.recovered)}</div>
           <br />
-          <div>Today's new Case(s): {stat.todayCases}</div>
-          <div>Today's new Death(s): {stat.todayDeaths}</div>
-          <div>Critical: {stat.critical}</div>
+          <div>Today's new Case(s): {FormatNumber(stat.todayCases)}</div>
+          <div>Today's new Death(s): {FormatNumber(stat.todayDeaths)}</div>
+          <div>Critical: {FormatNumber(stat.critical)}</div>
           <br />
           <Link to={`/`}>
             <span>Back to home</span>

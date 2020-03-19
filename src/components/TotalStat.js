@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { FormatNumber } from "../Util";
+
+import "./css/common.css";
 
 function TotalStat(props) {
   const [stat, setStat] = useState({});
@@ -14,38 +17,27 @@ function TotalStat(props) {
     getStat();
   }, []);
 
-  const _style = {
-    display: "flex",
-    justifyContent: "space-evenly",
-    marginTop: "20px",
-    flexFlow: "wrap",
-    backgroundColor: "darkslategrey"
-  };
-
-  const boxStyle = {
-    backgroundColor: "chocolate",
-    padding: "15px",
-    borderRadius: "10px",
-    width: "300px",
-    marginTop: "20px"
-  };
-
   if (!stat)
     return (
-      <div>
-        <h1>Error on fetching data for the global summary data!</h1>
+      <div className="main">
+        <div className="box">
+          <h1>
+            Error on fetching data for the global summary data! I am working on
+            it.
+          </h1>
+        </div>
       </div>
     );
   return (
-    <div style={_style}>
-      <div style={boxStyle}>
-        <h2>Total confirmed: {stat.cases}</h2>
+    <div className="main">
+      <div className="box">
+        <h2>Total confirmed: {FormatNumber(stat.cases)}</h2>
       </div>
-      <div style={boxStyle}>
-        <h2>Total deaths: {stat.deaths}</h2>
+      <div className="box">
+        <h2>Total deaths: {FormatNumber(stat.deaths)}</h2>
       </div>
-      <div style={boxStyle}>
-        <h2>Total recovered: {stat.recovered}</h2>
+      <div className="box">
+        <h2>Total recovered: {FormatNumber(stat.recovered)}</h2>
       </div>
     </div>
   );
