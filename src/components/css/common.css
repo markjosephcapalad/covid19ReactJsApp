@@ -20,13 +20,13 @@
   display: flex;
   margin-top: 20px;
   flex-flow: wrap;
-  justify-content: space-evenly;
+  justify-content: space-around;
   background-color: darkslategrey;
 }
 
 .flex-space-evenly {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
 .footer {
