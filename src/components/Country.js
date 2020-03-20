@@ -6,7 +6,17 @@ import Loader from "./Loader";
 
 function Country(props) {
   const [stat, setStat] = useState({});
-  const country = props.match.params.country;
+
+  let country;
+  let showBackLink = true;
+
+  if (props.geolocation) {
+    country = props.geolocation;
+    showBackLink = false;
+  } else {
+    country = props.match.params.country;
+  }
+
   useEffect(() => {
     async function getStat() {
       const data = await fetch(`https://corona.lmao.ninja/countries/${country}`)
@@ -28,6 +38,7 @@ function Country(props) {
             <div className="box-inside">
               <div>
                 <h2>{stat.country}</h2>
+
                 <hr />
               </div>
               <div>Cases: {FormatNumber(stat.cases)}</div>
@@ -38,9 +49,13 @@ function Country(props) {
               <div>Today's new Death(s): {FormatNumber(stat.todayDeaths)}</div>
               <div>Critical: {FormatNumber(stat.critical)}</div>
               <br />
-              <Link to={`/`}>
-                <span>Back to home</span>
-              </Link>
+              {showBackLink ? (
+                <Link to={`/`}>
+                  <span>Back to home</span>
+                </Link>
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </div>

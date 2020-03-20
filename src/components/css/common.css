@@ -62,3 +62,15 @@
   margin-right: 20px;
   margin-left: 20px;
 }
+
+.current-location {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  margin-bottom: -50px;
+}
+
+.current-location-text {
+  margin-bottom: -15px;
+  text-align: center;
+}
