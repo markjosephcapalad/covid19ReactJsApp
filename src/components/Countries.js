@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FormatNumber } from "../Util";
+import Loader from "./Loader";
 import "./css/select.css";
 import "./css/common.css";
 
@@ -22,13 +23,10 @@ function Countries(props) {
       setFilteredStat(data);
     }
     getStat();
-
-    console.log(stat);
   }, []);
 
   function filterCountry(e) {
     const country = e.target.value;
-    console.log(country);
 
     if (country !== "All") {
       const newStat = filteredStat.filter(
@@ -60,26 +58,30 @@ function Countries(props) {
           })}
         </select>
       </div>
-      <div className="main">
-        {stat.map(c => {
-          return (
-            <div className="box">
-              <div className="box-inside">
-                <div>
-                  <Link className="color-white" to={`/country/${c.country}`}>
-                    <h2>{c.country}</h2>
-                  </Link>
-                  <hr />
-                </div>
+      {stat.length === 0 ? (
+        <Loader />
+      ) : (
+        <div className="main">
+          {stat.map(c => {
+            return (
+              <div className="box">
+                <div className="box-inside">
+                  <div>
+                    <Link className="color-white" to={`/country/${c.country}`}>
+                      <h2>{c.country}</h2>
+                    </Link>
+                    <hr />
+                  </div>
 
-                <div>Cases: {FormatNumber(c.cases)}</div>
-                <div>Deaths: {FormatNumber(c.deaths)}</div>
-                <div>Recovered: {FormatNumber(c.recovered)}</div>
+                  <div>Cases: {FormatNumber(c.cases)}</div>
+                  <div>Deaths: {FormatNumber(c.deaths)}</div>
+                  <div>Recovered: {FormatNumber(c.recovered)}</div>
+                </div>
               </div>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
+      )}
     </>
   );
 }
