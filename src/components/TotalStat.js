@@ -21,7 +21,7 @@ function TotalStat(props) {
   const getCountry = () => {
     let parser;
     parser = new DOMParser();
-    fetch("http://api.hostip.info")
+    fetch("https://api.hostip.info")
       .then(response => response.text())
       .then(data => setCountryXML(data));
 
@@ -71,10 +71,14 @@ function TotalStat(props) {
               <h2>Total recovered: {FormatNumber(stat.recovered)}</h2>
             </div>
           </div>
-          <div className="current-location">
-            <h2 className="current-location-text">Your Country:</h2>
-            {country ? <Country geolocation={country} /> : ""}
-          </div>
+          {country ? (
+            <div className="current-location">
+              <h2 className="current-location-text">Your Country:</h2>
+              <Country geolocation={country} />
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       )}
     </>
