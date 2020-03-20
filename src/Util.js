@@ -1,6 +1,5 @@
 export function FormatNumber(num) {
   let newStr;
-  console.log(num);
   if (num !== undefined) {
     newStr = String(num);
 
