@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
+import { Tooltip } from "@material-ui/core";
+
 import { FormatNumber } from "../Util";
 import Loader from "./Loader";
+
 import "./css/select.css";
 import "./css/common.css";
 
@@ -66,13 +70,23 @@ function Countries(props) {
             return (
               <div className="box">
                 <div className="box-inside">
-                  <div>
-                    <Link className="color-white" to={`/country/${c.country}`}>
-                      <h2>{c.country}</h2>
-                    </Link>
-                    <hr />
-                  </div>
-
+                  <Tooltip
+                    title="Click country for more details."
+                    className="tooltip-country"
+                    placement="bottom-end"
+                    enterTouchDelay={30}
+                    leaveTouchDelay={300}
+                  >
+                    <div>
+                      <Link
+                        className="color-white"
+                        to={`/country/${c.country}`}
+                      >
+                        <h2>{c.country}</h2>
+                      </Link>
+                      <hr />
+                    </div>
+                  </Tooltip>
                   <div>Cases: {FormatNumber(c.cases)}</div>
                   <div>Deaths: {FormatNumber(c.deaths)}</div>
                   <div>Recovered: {FormatNumber(c.recovered)}</div>
