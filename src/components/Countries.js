@@ -75,7 +75,8 @@ function Countries(props) {
                     className="tooltip-country"
                     placement="bottom-end"
                     enterTouchDelay={30}
-                    leaveTouchDelay={300}
+                    leaveTouchDelay={500}
+                    arrow={true}
                   >
                     <div>
                       <Link
