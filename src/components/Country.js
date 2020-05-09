@@ -19,9 +19,11 @@ function Country(props) {
 
   useEffect(() => {
     async function getStat() {
-      const data = await fetch(`https://corona.lmao.ninja/countries/${country}`)
-        .then(response => response.json())
-        .catch(err => setStat({}));
+      const data = await fetch(
+        `https://corona.lmao.ninja/v2/countries/${country}`
+      )
+        .then((response) => response.json())
+        .catch((err) => setStat({}));
 
       setStat(data);
     }
