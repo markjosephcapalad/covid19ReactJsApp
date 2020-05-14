@@ -6,6 +6,7 @@ import Loader from "./Loader";
 
 function Country(props) {
   const [stat, setStat] = useState({});
+  const [countryInfo, setCountryInfo] = useState({});
 
   let country;
   let showBackLink = true;
@@ -26,6 +27,7 @@ function Country(props) {
         .catch((err) => setStat({}));
 
       setStat(data);
+      setCountryInfo(data.countryInfo);
     }
     getStat();
   }, []);
@@ -39,17 +41,23 @@ function Country(props) {
           <div className="box">
             <div className="box-inside">
               <div>
-                <h2>{stat.country}</h2>
-
+                <h2>
+                  {stat.country} - <span>({stat.continent})</span>
+                </h2>
+                <img className="flag" src={countryInfo.flag} alt="flag" />
                 <hr />
               </div>
-              <div>Cases: {FormatNumber(stat.cases)}</div>
+              <div>Total cases: {FormatNumber(stat.cases)}</div>
+              <div>Active cases: {FormatNumber(stat.active)}</div>
               <div>Deaths: {FormatNumber(stat.deaths)}</div>
               <div>Recovered: {FormatNumber(stat.recovered)}</div>
+
               <br />
               <div>Today's new Case(s): {FormatNumber(stat.todayCases)}</div>
               <div>Today's new Death(s): {FormatNumber(stat.todayDeaths)}</div>
               <div>Critical: {FormatNumber(stat.critical)}</div>
+              <br />
+              <div>Total person tested: {FormatNumber(stat.tests)}</div>
               <br />
               {showBackLink ? (
                 <Link to={`/`}>
