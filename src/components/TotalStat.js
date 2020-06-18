@@ -10,9 +10,9 @@ function TotalStat(props) {
 
   const getStat = () => {
     return fetch("https://coronavirus-19-api.herokuapp.com/all")
-      .then(response => response.json())
-      .then(d => setStat(d))
-      .catch(err => setStat({}));
+      .then((response) => response.json())
+      .then((d) => setStat(d))
+      .catch((err) => setStat({}));
   };
 
   useEffect(() => {
@@ -40,13 +40,13 @@ function TotalStat(props) {
       ) : (
         <div>
           <div className="main">
-            <div className="box">
+            <div className="box2">
               <h2>Total confirmed: {FormatNumber(stat.cases)}</h2>
             </div>
-            <div className="box">
+            <div className="box2">
               <h2>Total deaths: {FormatNumber(stat.deaths)}</h2>
             </div>
-            <div className="box">
+            <div className="box2">
               <h2>Total recovered: {FormatNumber(stat.recovered)}</h2>
             </div>
           </div>
