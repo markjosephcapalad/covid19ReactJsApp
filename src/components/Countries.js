@@ -19,9 +19,9 @@ function Countries(props) {
       const data = await fetch(
         "https://coronavirus-19-api.herokuapp.com/countries/"
       )
-        .then(response => response.json())
-        .catch(err => setStat([]));
-      setStat(data);
+        .then((response) => response.json())
+        .catch((err) => setStat([]));
+      setStat(data.filter((a) => a.country.toLowerCase() !== "world"));
       let c = [...data];
       setCountry(c.sort((a, b) => (a.country > b.country ? 1 : -1)));
       setFilteredStat(data);
@@ -34,7 +34,7 @@ function Countries(props) {
 
     if (country !== "All") {
       const newStat = filteredStat.filter(
-        c => c.country.toLowerCase() === country.toLowerCase()
+        (c) => c.country.toLowerCase() === country.toLowerCase()
       );
 
       setStat(newStat);
@@ -57,7 +57,7 @@ function Countries(props) {
 
         <select className="select-css" onChange={filterCountry}>
           <option value="All">All</option>
-          {country.map(opt => {
+          {country.map((opt) => {
             return <option value={opt.country}>{opt.country}</option>;
           })}
         </select>
@@ -66,7 +66,7 @@ function Countries(props) {
         <Loader />
       ) : (
         <div className="main">
-          {stat.map(c => {
+          {stat.map((c) => {
             return (
               <div className="box">
                 <div className="box-inside">
