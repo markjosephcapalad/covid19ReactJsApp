@@ -1,5 +1,6 @@
 export function FormatNumber(num) {
   let newStr;
+  if (num === null) return "n/a";
   if (num !== undefined) {
     newStr = String(num);
 
@@ -11,7 +12,7 @@ export function FormatNumber(num) {
         newStr.substring(newStr.length - 3, newStr.length);
     }
     // millions
-    else if (newStr.length > 6) {
+    else if (newStr.length > 6 && !null) {
       newStr =
         newStr.substring(0, newStr.length - 6) +
         "," +
