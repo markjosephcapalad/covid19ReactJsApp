@@ -68,7 +68,7 @@ function Countries(props) {
         <div className="main">
           {stat.map((c) => {
             return (
-              <div className="box">
+              <div id={c.country.toLowerCase()} className="box">
                 <div className="box-inside">
                   <Tooltip
                     title="Click country for more details."

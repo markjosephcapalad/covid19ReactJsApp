@@ -4,6 +4,8 @@ import { FormatNumber } from "../Util";
 import "./css/common.css";
 import Loader from "./Loader";
 
+import { HashLink } from "react-router-hashlink";
+
 function Country(props) {
   const [stat, setStat] = useState({});
   const [countryInfo, setCountryInfo] = useState({});
@@ -60,9 +62,9 @@ function Country(props) {
               <div>Total person tested: {FormatNumber(stat.tests)}</div>
               <br />
               {showBackLink ? (
-                <Link to={`/`}>
+                <HashLink to={`/#${stat.country.toLowerCase()}`}>
                   <span>Back to home</span>
-                </Link>
+                </HashLink>
               ) : (
                 ""
               )}
