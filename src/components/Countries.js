@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ReactGA from "react-ga";
 
 import { Tooltip } from "@material-ui/core";
 
@@ -8,6 +9,10 @@ import Loader from "./Loader";
 
 import "./css/select.css";
 import "./css/common.css";
+
+const trackingId = "UA-171265112-2"; // Replace with your Google Analytics tracking ID
+ReactGA.initialize(trackingId);
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 function Countries(props) {
   const [stat, setStat] = useState([]);
@@ -58,7 +63,11 @@ function Countries(props) {
         <select className="select-css" onChange={filterCountry}>
           <option value="All">All</option>
           {country.map((opt) => {
-            return <option value={opt.country}>{opt.country}</option>;
+            return (
+              <option key={opt.country} value={opt.country}>
+                {opt.country}
+              </option>
+            );
           })}
         </select>
       </div>
@@ -68,8 +77,12 @@ function Countries(props) {
         <div className="main">
           {stat.map((c) => {
             return (
-              <div id={c.country.toLowerCase()} className="box">
-                <div className="box-inside">
+              <div
+                key={c.country.toLowerCase()}
+                id={c.country.toLowerCase()}
+                className="box"
+              >
+                <div key={c.country.toLowerCase()} className="box-inside">
                   <Tooltip
                     title="Click country for more details."
                     className="tooltip-country"

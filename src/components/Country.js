@@ -3,8 +3,13 @@ import { Link } from "react-router-dom";
 import { FormatNumber } from "../Util";
 import "./css/common.css";
 import Loader from "./Loader";
+import ReactGA from "react-ga";
 
 import { HashLink } from "react-router-hashlink";
+
+const trackingId = "UA-171265112-2"; // Replace with your Google Analytics tracking ID
+ReactGA.initialize(trackingId);
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 function Country(props) {
   const [stat, setStat] = useState({});
